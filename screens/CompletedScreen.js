@@ -5,7 +5,7 @@ function CompletedScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Completed!</Text>
-      <Text>This will show list of ACTIVE kombucha brews</Text>
+      <Text>This will show list of COMPLETED kombucha brews</Text>
     </View>
   );
 }
