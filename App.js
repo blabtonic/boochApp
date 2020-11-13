@@ -10,6 +10,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
+// move this to screen folder
 function StackScreen() {
   return (
     <Stack.Navigator>
@@ -41,8 +42,16 @@ export default function App() {
             activeTintColor: '#AA1075',
           }}
         >
-          <Tab.Screen name="Header" component={StackScreen} />
           <Tab.Screen
+            name="Header"
+            component={StackScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons name="list" size={size} color={color} />
+              ),
+            }}
+          />
+          {/* <Tab.Screen
             name="Active"
             component={ActiveScreen}
             options={{
@@ -51,7 +60,7 @@ export default function App() {
                 <MaterialIcons name="list" size={size} color={color} />
               ),
             }}
-          />
+          /> */}
           <Tab.Screen
             name="Completed"
             component={CompletedScreen}
