@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import ActiveScreen from './screens/ActiveScreen';
 import CompletedScreen from './screens/CompletedScreen';
+import RecipeScreen from './screens/RecipeScreen';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -12,6 +13,7 @@ const Tab = createBottomTabNavigator();
 // move these to screen folder
 const ActiveStack = createStackNavigator();
 const CompletedStack = createStackNavigator();
+const RecipeStack = createStackNavigator();
 
 // move this to screen folder
 function ActiveStackScreen() {
@@ -56,6 +58,27 @@ function CompletedStackScreen() {
   );
 }
 
+function RecipeStackScreen() {
+  return (
+    <RecipeStack.Navigator>
+      <RecipeStack.Screen
+        name="Recipe"
+        component={RecipeScreen}
+        options={{
+          title: 'Recipe',
+          headerStyle: {
+            backgroundColor: '#C3DDDD',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    </RecipeStack.Navigator>
+  );
+}
+
 export default function App() {
   return (
     <>
@@ -80,9 +103,19 @@ export default function App() {
             name="Completed"
             component={CompletedStackScreen}
             options={{
-              tabBarLabel: 'Completed!',
+              tabBarLabel: 'Completed',
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons name="check" size={size} color={color} />
+              ),
+            }}
+          />
+          <Tab.Screen
+            name="Recipe"
+            component={RecipeStackScreen}
+            options={{
+              tabBarLabel: 'Recipe',
+              tabBarIcon: ({ color, size }) => (
+                <MaterialIcons name="featured-play-list" size={size} color={color} />
               ),
             }}
           />
