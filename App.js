@@ -8,13 +8,16 @@ import CompletedScreen from './screens/CompletedScreen';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
-const Stack = createStackNavigator();
+
+// move these to screen folder
+const ActiveStack = createStackNavigator();
+const CompletedStack = createStackNavigator();
 
 // move this to screen folder
-function StackScreen() {
+function ActiveStackScreen() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen
+    <ActiveStack.Navigator>
+      <ActiveStack.Screen
         name="Active"
         component={ActiveScreen}
         options={{
@@ -28,7 +31,28 @@ function StackScreen() {
           },
         }}
       />
-    </Stack.Navigator>
+    </ActiveStack.Navigator>
+  );
+}
+
+function CompletedStackScreen() {
+  return (
+    <CompletedStack.Navigator>
+      <CompletedStack.Screen
+        name="Completed"
+        component={CompletedScreen}
+        options={{
+          title: 'Completed',
+          headerStyle: {
+            backgroundColor: '#2BBB8A',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    </CompletedStack.Navigator>
   );
 }
 
@@ -43,29 +67,20 @@ export default function App() {
           }}
         >
           <Tab.Screen
-            name="Header"
-            component={StackScreen}
-            options={{
-              tabBarIcon: ({ color, size }) => (
-                <MaterialIcons name="list" size={size} color={color} />
-              ),
-            }}
-          />
-          {/* <Tab.Screen
             name="Active"
-            component={ActiveScreen}
+            component={ActiveStackScreen}
             options={{
               tabBarLabel: 'Active',
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons name="list" size={size} color={color} />
               ),
             }}
-          /> */}
+          />
           <Tab.Screen
             name="Completed"
-            component={CompletedScreen}
+            component={CompletedStackScreen}
             options={{
-              tabBarLabel: 'Completed',
+              tabBarLabel: 'Completed!',
               tabBarIcon: ({ color, size }) => (
                 <MaterialIcons name="check" size={size} color={color} />
               ),
