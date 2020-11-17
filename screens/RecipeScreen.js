@@ -1,16 +1,31 @@
 import React, { useState } from 'react';
-import { FlatList, View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native';
+import {
+  Button,
+  FlatList,
+  View,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  StyleSheet,
+} from 'react-native';
 import RecipePicker from '../components/RecipePicker';
 
 const DATA = [
   {
-    id: '4bjd834t0i84-3i83er093',
+    id: '1',
     title: 'Black tea',
   },
+  {
+    id: '2',
+    title: 'White tea',
+  },
 ];
+
+// How to make button delete DATA through ID?
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
     <Text>{item.title}</Text>
+    <Button title="DELETE" color="#DD28AD" />
   </TouchableOpacity>
 );
 
