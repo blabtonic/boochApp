@@ -1,49 +1,50 @@
-import React, { Component } from 'react';
-import { FlatList, View, Text, TextInput, StyleSheet } from 'react-native';
-import { Picker } from '@react-native-picker/picker';
+import React, { useState } from 'react';
+import { FlatList, View, TouchableOpacity, Text, TextInput, StyleSheet } from 'react-native';
+import RecipePicker from '../components/RecipePicker';
 
-class RecipeScreen extends Component {
-  state = {
-    stage: 'First',
+const DATA = [
+  {
+    id: '4bjd834t0i84-3i83er093',
+    title: 'Black tea',
+  },
+];
+const Item = ({ item, onPress, style }) => (
+  <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+    <Text>{item.title}</Text>
+  </TouchableOpacity>
+);
+
+const RecipeScreen = () => {
+  const [selectedId, setSelectedId] = useState(null);
+
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.id === selectedId ? '#BADA55' : '#C47';
+    return <Item item={item} onPress={() => setSelectedId(item.id)} style={{ backgroundColor }} />;
   };
-  render() {
-    const DATA = [
-      {
-        id: '4bjd834t0i84-3i83er093',
-        title: 'Black tea',
-      },
-    ];
-    const Item = ({ title }) => (
-      <View style={styles.item}>
-        <Text>{title}</Text>
-      </View>
-    );
 
-    const renderItem = ({ item }) => <Item title={item.title} />;
+  return (
+    <View>
+      <Text style={styles.LabelText}>Brew Name</Text>
+      <TextInput style={{ height: 60, fontSize: 28, borderColor: 'red', borderWidth: 2 }} />
+      <Text style={styles.LabelText}>Brewer</Text>
+      <TextInput style={{ height: 60, fontSize: 28, borderColor: 'red', borderWidth: 2 }} />
+      <Text style={styles.LabelText}>Stage</Text>
+      <RecipePicker />
 
-    return (
-      <View>
-        <Text style={styles.LabelText}>Brew Name</Text>
-        <TextInput style={{ height: 60, fontSize: 28, borderColor: 'red', borderWidth: 2 }} />
-        <Text style={styles.LabelText}>Brewer</Text>
-        <TextInput style={{ height: 60, fontSize: 28, borderColor: 'red', borderWidth: 2 }} />
-        <Text style={styles.LabelText}>Stage</Text>
-        <Picker
-          selectedValue={this.state.stage}
-          style={{ height: 40, width: 145 }}
-          onValueChange={(itemValue, itemIndex) => this.setState({ stage: itemValue })}
-        >
-          <Picker.Item label="First" value="First" />
-          <Picker.Item label="Secondary" value="Secondary" />
-          <Picker.Item label="Completed" value="Completed" />
-        </Picker>
-        <FlatList data={DATA} renderItem={renderItem} keyExtractor={(item) => item.id} />
-        <Text style={styles.LabelText}>Starting PH</Text>
-        <TextInput style={{ height: 30, fontSize: 20, borderColor: 'red', borderWidth: 2 }} />
-      </View>
-    );
-  }
-}
+      <FlatList
+        extraData={selectedId}
+        data={DATA}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+      <Text style={styles.LabelText}>Starting PH</Text>
+      <TextInput
+        keyboardType="decimal-pad"
+        style={{ height: 30, fontSize: 20, borderColor: 'red', borderWidth: 2 }}
+      />
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   LabelText: {
