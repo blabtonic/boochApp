@@ -67,7 +67,7 @@ function RecipeStackScreen() {
         options={{
           title: 'Recipe',
           headerStyle: {
-            backgroundColor: '#C3DDDD',
+            backgroundColor: '#15D',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
