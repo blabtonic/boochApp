@@ -11,17 +11,6 @@ import {
 } from 'react-native';
 import RecipePicker from '../components/RecipePicker';
 
-const DATA = [
-  {
-    id: '0',
-    text: 'Black tea',
-  },
-  {
-    id: '1',
-    text: 'White tea',
-  },
-];
-
 // How to make button delete DATA through ID?
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
@@ -32,6 +21,18 @@ const Item = ({ item, onPress, style }) => (
 
 const RecipeScreen = () => {
   const [selectedId, setSelectedId] = useState(null);
+  const [initialElements, changeEl] = useState([{ id: '0', text: 'Add Tea' }]);
+
+  const [listState, setListState] = useState(initialElements);
+  const [idx, increment] = useState(0);
+
+  const addElement = () => {
+    var newArray = [...initialElements, { id: idx, text: 'Tea' + (idx + 1) }];
+    increment(idx + 1);
+    console.log(initialElements.length);
+    setListState(newArray);
+    changeEl(newArray);
+  };
 
   const renderItem = ({ item }) => {
     const backgroundColor = item.id === selectedId ? '#BADA55' : '#DE7411';
@@ -49,10 +50,12 @@ const RecipeScreen = () => {
 
       <FlatList
         extraData={selectedId}
-        data={DATA}
+        data={listState}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
+
+      <Button title="ADD" color="#24F413" onPress={addElement} />
       <Text style={styles.LabelText}>Starting PH</Text>
       <TextInput keyboardType="decimal-pad" style={styles.input} />
     </View>
