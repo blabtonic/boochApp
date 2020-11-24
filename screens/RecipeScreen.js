@@ -15,7 +15,6 @@ import RecipePicker from '../components/RecipePicker';
 const Item = ({ item, onPress, style }) => (
   <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
     <Text>{item.text}</Text>
-    <Button title="DELETE" color="#15D" />
   </TouchableOpacity>
 );
 
@@ -26,9 +25,18 @@ const RecipeScreen = () => {
   const [listState, setListState] = useState(initialElements);
   const [idx, increment] = useState(0);
 
+  // Adds new flatlist increments id by +1
   const addElement = () => {
-    var newArray = [...initialElements, { id: idx, text: 'Tea' + (idx + 1) }];
+    let newArray = [...initialElements, { id: idx, text: 'Tea' + (idx + 1) }];
     increment(idx + 1);
+    console.log(initialElements.length);
+    setListState(newArray);
+    changeEl(newArray);
+  };
+
+  // deletes ALL elements need to delete individual elements
+  const deleteElement = () => {
+    let newArray = [-initialElements];
     console.log(initialElements.length);
     setListState(newArray);
     changeEl(newArray);
@@ -56,6 +64,7 @@ const RecipeScreen = () => {
       />
 
       <Button title="ADD" color="#24F413" onPress={addElement} />
+      <Button title="DELETE" color="#15D" onPress={deleteElement} />
       <Text style={styles.LabelText}>Starting PH</Text>
       <TextInput keyboardType="decimal-pad" style={styles.input} />
     </View>
