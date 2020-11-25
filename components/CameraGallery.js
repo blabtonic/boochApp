@@ -35,6 +35,7 @@ export default function CameraGallery() {
           }}
         >
           <TouchableOpacity
+            onPress={__startCamera}
             style={{
               width: 130,
               borderRadius: 5,
