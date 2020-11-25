@@ -18,42 +18,45 @@ export default function CameraGallery() {
   };
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#fff',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      {startCamera ? (
         <Camera
           style={{ flex: 1, width: '100%' }}
           ref={(res) => {
             camera = res;
           }}
-        ></Camera>
-        <TouchableOpacity
+        />
+      ) : (
+        <View
           style={{
-            width: 130,
-            borderRadius: 5,
-            backgroundColor: '#8F00AD',
-            flexDirection: 'row',
+            flex: 1,
+            backgroundColor: '#fff',
             justifyContent: 'center',
             alignItems: 'center',
-            height: 40,
           }}
         >
-          <Text
+          <TouchableOpacity
             style={{
-              color: '#fff',
-              fontWeight: 'bold',
-              textAlign: 'center',
+              width: 130,
+              borderRadius: 5,
+              backgroundColor: '#8F00AD',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: 40,
             }}
           >
-            TAKE PHOTO
-          </Text>
-        </TouchableOpacity>
-      </View>
+            <Text
+              style={{
+                color: '#fff',
+                fontWeight: 'bold',
+                textAlign: 'center',
+              }}
+            >
+              TAKE PHOTO
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
