@@ -1,12 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import { Camera } from 'expo-camera';
 let camera;
 
 export default function CameraGallery() {
   const [startCamera, setStartCamera] = useState(false);
 
-  const __startCamera = () => {};
+  // start function for camera
+  const __startCamera = async () => {
+    const { status } = await Camera.requestPermissionsAsync();
+    if (status === 'granted') {
+      // changes the start state for camera to true
+      setStartCamera(true);
+    } else {
+      Alert.alert('Camera Access was denied');
+    }
+  };
   return (
     <View style={styles.container}>
       <View
