@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-import * as Permission from 'expo-permissions';
+import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
 
 export default class CameraGallery extends Component {
@@ -9,8 +9,22 @@ export default class CameraGallery extends Component {
   state = {
     hasCameraPermission: null,
   };
+
+  // when component is reach ask user for camera permissions. state = true
+  async componentDidMount() {
+    const camera = await Permissions.askAsync(Permissions.CAMERA);
+    const hasCameraPermission = camera.status === 'granted';
+
+    this.setState({ hasCameraPermission });
+  }
   render() {
     const { hasCameraPermission } = this.state;
+
+    if (hasCameraPermission === null) {
+      return <View />;
+    } else if (hasCameraPermission === false) {
+      Alert.alert('Unable to access Camera');
+    }
     return (
       <View>
         <Camera ref={(camera) => (this.camera = camera)} />
