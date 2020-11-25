@@ -1,3 +1,4 @@
+import { Camera } from 'expo-camera';
 import React, { useState } from 'react';
 import {
   Button,
@@ -9,6 +10,7 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
+import CameraGallery from '../components/CameraGallery';
 import RecipePicker from '../components/RecipePicker';
 
 // How to make button delete DATA through ID?
@@ -64,9 +66,12 @@ const RecipeScreen = () => {
       />
 
       <Button title="ADD" color="#24F413" onPress={addElement} />
-      <Button title="DELETE" color="#15D" onPress={deleteElement} />
+      <Button title="DELETE" color="#BA0404" onPress={deleteElement} />
       <Text style={styles.LabelText}>Starting PH</Text>
       <TextInput keyboardType="decimal-pad" style={styles.input} />
+      <Text style={styles.LabelText}>Starting Temp</Text>
+      <TextInput keyboardType="decimal-pad" style={styles.input} />
+      <CameraGallery />
     </View>
   );
 };
