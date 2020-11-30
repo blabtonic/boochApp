@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import { Camera } from 'expo-camera';
@@ -27,6 +27,28 @@ export default class CameraGallery extends Component {
     }
     return (
       <View>
+        <TouchableOpacity
+          onPress={__startCamera}
+          style={{
+            width: 130,
+            borderRadius: 5,
+            backgroundColor: '#8F00AD',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: 40,
+          }}
+        >
+          <Text
+            style={{
+              color: '#fff',
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }}
+          >
+            TAKE PHOTO
+          </Text>
+        </TouchableOpacity>
         <Camera style={styles.preview} ref={(camera) => (this.camera = camera)} />
       </View>
     );
