@@ -10,7 +10,6 @@ import {
   TextInput,
   StyleSheet,
 } from 'react-native';
-import CameraGallery from '../components/CameraGallery';
 import RecipePicker from '../components/RecipePicker';
 
 // How to make button delete DATA through ID?
@@ -49,6 +48,33 @@ const RecipeScreen = () => {
     return <Item item={item} onPress={() => setSelectedId(item.id)} style={{ backgroundColor }} />;
   };
 
+  const CameraButton = (navigation) => {
+    return (
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Recipe')}
+        style={{
+          width: 130,
+          borderRadius: 5,
+          backgroundColor: '#8F00AD',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: 40,
+        }}
+      >
+        <Text
+          style={{
+            color: '#fff',
+            fontWeight: 'bold',
+            textAlign: 'center',
+          }}
+        >
+          TAKE PHOTO
+        </Text>
+      </TouchableOpacity>
+    );
+  };
+
   return (
     <View>
       <Text style={styles.LabelText}>Brew Name</Text>
@@ -71,7 +97,7 @@ const RecipeScreen = () => {
       <TextInput keyboardType="decimal-pad" style={styles.input} />
       <Text style={styles.LabelText}>Starting Temp</Text>
       <TextInput keyboardType="decimal-pad" style={styles.input} />
-      <CameraGallery />
+      <CameraButton />
     </View>
   );
 };

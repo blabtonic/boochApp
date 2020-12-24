@@ -28,7 +28,6 @@ export default class CameraGallery extends Component {
     return (
       <View>
         <TouchableOpacity
-          onPress={__startCamera}
           style={{
             width: 130,
             borderRadius: 5,

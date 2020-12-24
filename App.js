@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ActiveScreen from './screens/ActiveScreen';
 import CompletedScreen from './screens/CompletedScreen';
 import RecipeScreen from './screens/RecipeScreen';
+import CameraScreen from './screens/CameraScreen';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
@@ -14,6 +15,28 @@ const Tab = createBottomTabNavigator();
 const ActiveStack = createStackNavigator();
 const CompletedStack = createStackNavigator();
 const RecipeStack = createStackNavigator();
+const CameraStack = createStackNavigator();
+
+function CameraStackScreen() {
+  return (
+    <CameraStack.Navigator>
+      <CameraStack.Screen
+        name="Camera"
+        component={CameraScreen}
+        options={{
+          title: 'Camera',
+          headerStyle: {
+            backgroundColor: '#f4511e',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      />
+    </CameraStack.Navigator>
+  );
+}
 
 // move this to screen folder
 function ActiveStackScreen() {
