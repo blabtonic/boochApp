@@ -93,8 +93,7 @@ const RecipeScreen = () => {
 
       <Button title="ADD" color="#24F413" onPress={addElement} />
       <Button title="DELETE" color="#BA0404" onPress={deleteElement} />
-      <Text style={styles.LabelText}>Starting PH</Text>
-      <TextInput keyboardType="decimal-pad" style={styles.input} />
+      <Text style={styles.LabelText}>Set Notification alarm</Text>
       <Text style={styles.LabelText}>Starting Temp</Text>
       <TextInput keyboardType="decimal-pad" style={styles.input} />
       <CameraButton />
